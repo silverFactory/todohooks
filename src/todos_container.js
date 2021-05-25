@@ -8,8 +8,8 @@ export default function TodosContainer(){
     {text: "apply for jobs", completed: false}
   ])
 
-  function addTodo(){
-    console.log("updating")
+  const addTodo = (todo) => {
+    setTodos([...todos, {text: todo, completed: false}])
   }
 
   return(
