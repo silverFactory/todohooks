@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import TodoForm from './todo_form'
+import TodoCounter from './todo_counter'
 import Todo from './todo'
 
 export default function TodosContainer(){
@@ -13,12 +14,22 @@ export default function TodosContainer(){
     setTodos([...todos, {text: todo, completed: false}])
   }
 
+
+  function handleChange(text){
+    //find the todo that matches the text
+    let toBeUpdated = todos.find(todo => todo.text === text)
+    //flip the completed status
+    toBeUpdated.completed === false ? toBeUpdated.completed = true : toBeUpdated.completed = false
+  }
+
   return(
     <div>
       {todos.map((todo, index) => <Todo text={todo.text}
                                         completed={todo.completed}
-                                        key={index}/>)}
-      <TodoForm addTodo={addTodo}/>
+                                        key={index}
+                                        handleChange={handleChange}/>)}
+      <TodoForm addTodo={addTodo} />
+      <TodoCounter todos={todos} />
     </div>
   )
 }
