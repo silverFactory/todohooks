@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import TodoForm from './todo_form'
+import Todo from './todo'
 
 export default function TodosContainer(){
   const [todos, setTodos] = useState([
@@ -14,8 +15,9 @@ export default function TodosContainer(){
 
   return(
     <div>
-      {todos.map((todo, index) => <div><p>{todo.text}</p>
-    <input type="checkbox" id={index} name={index} /></div>)}
+      {todos.map((todo, index) => <Todo text={todo.text}
+                                        completed={todo.completed}
+                                        key={index}/>)}
       <TodoForm addTodo={addTodo}/>
     </div>
   )
